@@ -16,8 +16,8 @@ export const projects: Project[] = [
     description: 'Website portfolio personal dengan desain cinematic dark theme, dibangun menggunakan React, TypeScript, dan Tailwind CSS.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     thumbnail: '/images/project-portfolio.png',
-    githubUrl: 'https://github.com/rafiktb21-design/',
-    liveUrl: 'https://rafi-portfolio.vercel.app',
+    githubUrl: 'https://github.com/rafiktb21-design/rafi-portfolio',
+    liveUrl: 'https://rafi-portfolio-kohl.vercel.app/',
     status: 'completed',
   },
   {
