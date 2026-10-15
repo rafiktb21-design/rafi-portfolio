@@ -36,6 +36,8 @@ export const projects: Project[] = [
     description: 'Website photobooth dengan fitur kamera dan filter, dibangun menggunakan React dan Tailwind CSS.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'WebRTC'],
     thumbnail: '/images/project-photobooth.png',
+    githubUrl: 'https://github.com/rafiktb21-design/rafy-PhotoBooth',
+    liveUrl: 'https://rafy-photo-booth.vercel.app/',
     status: 'completed',
   },
   {
@@ -44,6 +46,7 @@ export const projects: Project[] = [
     description: 'Membuat game menggunakan Roblox Studio dengan bahasa Lua. Game ini bergenre horror dengan tema sekolah yang menyeramkan, dilengkapi dengan atmosfer yang mencekam, efek suara yang mendukung, dan gameplay puzzle yang menantang.',
     technologies: ['Roblox Studio', 'Lua', 'Game Development', '3D Design'],
     thumbnail: '/images/project-roblox-game.png',
+    liveUrl: 'https://www.roblox.com/share?code=c028cb20c5e4374ca604ee196b79e42c&type=ExperienceDetails&stamp=1792070322375',
     status: 'in-progress',
   },
 ];

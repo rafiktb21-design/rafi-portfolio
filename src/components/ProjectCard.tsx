@@ -144,6 +144,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   <Download size={16} />
                   Download
                 </>
+              ) : project.liveUrl.includes('roblox.com') ? (
+                <>
+                  <ExternalLink size={16} />
+                  Coba Sekarang
+                </>
               ) : (
                 <>
                   <ExternalLink size={16} />
