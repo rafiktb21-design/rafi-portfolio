@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Custom CSS Variables */
+:root {
+  --color-bg-primary: #080808;
+  --color-bg-secondary: #101010;
+  --color-dark-maroon: #240607;
+  --color-accent-red: #F01E2C;
+  --color-bright-red: #FF3845;
+  --color-white: #F7F7F7;
+  --color-muted: #A4A4A4;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-accent-red);
+  color: var(--color-white);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-maroon);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-red);
+}
+
+/* Focus visible styling */
+:focus-visible {
+  outline: 2px solid var(--color-accent-red);
+  outline-offset: 2px;
+}
