@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Download } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import type { Project } from '../data/projects';
 
@@ -139,8 +139,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
               whileHover={{ x: 5 }}
               className="flex items-center gap-2 text-sm text-[#A4A4A4] hover:text-[#F01E2C] transition-colors"
             >
-              <ExternalLink size={16} />
-              Live Demo
+              {project.liveUrl.includes('drive.google.com') ? (
+                <>
+                  <Download size={16} />
+                  Download
+                </>
+              ) : (
+                <>
+                  <ExternalLink size={16} />
+                  Live Demo
+                </>
+              )}
             </motion.a>
           ) : null}
         </div>

@@ -26,6 +26,8 @@ export const projects: Project[] = [
     description: 'Aplikasi pengingat minum air berbasis Android yang dibangun dengan Flutter & Firebase. Mengatur jadwal minum otomatis sepanjang hari, memverifikasi kepatuhan lewat absen foto dengan lokasi real-time, serta dilengkapi sistem login multi-akun dan fitur pelacak siklus menstruasi.',
     technologies: ['Flutter', 'Dart', 'Firebase', 'Android'],
     thumbnail: '/images/project-water-reminder.png',
+    githubUrl: 'https://github.com/rafiktb21-design/rafi-air_minum',
+    liveUrl: 'https://drive.google.com/file/d/1Pm-PQdBW8h-R-qDuv4EB8NkH6_4hvtuq/view?usp=drive_link',
     status: 'completed',
   },
   {
