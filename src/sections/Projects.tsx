@@ -7,25 +7,16 @@ import { projects } from '../data/projects';
 
 const slideVariants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? '-72%' : '72%',
-    rotateY: direction > 0 ? 22 : -22,
-    scale: 0.9,
-    opacity: 0.45,
-    zIndex: 2,
+    x: direction > 0 ? 36 : -36,
+    opacity: 0,
   }),
   center: {
     x: 0,
-    rotateY: 0,
-    scale: 1,
     opacity: 1,
-    zIndex: 3,
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? '18%' : '-18%',
-    rotateY: direction > 0 ? -12 : 12,
-    scale: 0.94,
-    opacity: 0.32,
-    zIndex: 1,
+    x: direction > 0 ? -36 : 36,
+    opacity: 0,
   }),
 };
 
@@ -77,8 +68,8 @@ export function Projects() {
             <ChevronLeft size={26} className="transition-transform duration-300 group-hover:-translate-x-1" />
           </button>
 
-          <div className="relative min-h-[700px] overflow-hidden border border-white/10 bg-[#080808] [perspective:1800px] sm:min-h-[610px] lg:min-h-[510px]">
-            <AnimatePresence initial={false} custom={direction}>
+          <div className="relative min-h-[700px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[610px] lg:min-h-[510px]">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.article
                 key={project.id}
                 custom={direction}
@@ -86,8 +77,7 @@ export function Projects() {
                 initial={reduceMotion ? { opacity: 0 } : 'enter'}
                 animate="center"
                 exit={reduceMotion ? { opacity: 0 } : 'exit'}
-                transition={{ x: { type: 'spring', stiffness: 175, damping: 24 }, rotateY: { type: 'spring', stiffness: 150, damping: 22 }, opacity: { duration: 0.35 }, scale: { duration: 0.45 } }}
-                style={{ transformStyle: 'preserve-3d', transformOrigin: direction > 0 ? 'left center' : 'right center' }}
+                transition={{ x: { duration: 0.32, ease: 'easeOut' }, opacity: { duration: 0.26, ease: 'easeOut' } }}
                 drag={reduceMotion ? false : 'x'}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.12}
