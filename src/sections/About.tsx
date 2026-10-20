@@ -191,7 +191,7 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0, y: -30 }}
                 viewport={{ once: false, amount: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
+                transition={{ duration: 0.3, delay: 0.15 + index * 0.02 }}
                 className="group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-[#101010] border border-[#240607] rounded-lg hover:border-[#F01E2C]/50 transition-all duration-300 hover:scale-110"
                 title={tech.name}
               >
