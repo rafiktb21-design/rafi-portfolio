@@ -44,7 +44,7 @@ export function Projects() {
     <section id="project" className="relative flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-[#101010] py-12 md:py-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
+      <div className="relative mx-auto max-w-[80rem] px-4 sm:px-8 lg:px-10">
         <SectionHeading
           title="Projects"
           subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
