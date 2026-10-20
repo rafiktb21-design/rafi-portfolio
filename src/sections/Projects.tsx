@@ -44,7 +44,7 @@ export function Projects() {
     <section id="project" className="relative flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-[#101010] py-12 md:py-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-[80rem] px-4 sm:px-8 lg:px-10">
+      <div className="relative mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Projects"
           subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
@@ -68,7 +68,7 @@ export function Projects() {
             <ChevronLeft size={26} className="transition-transform duration-300 group-hover:-translate-x-1" />
           </button>
 
-          <div className="relative min-h-[500px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[440px] lg:min-h-[min(52vh,460px)]">
+          <div className="relative min-h-[500px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[440px] lg:min-h-[min(56vh,500px)]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.article
                 key={project.id}
