@@ -7,19 +7,25 @@ import { projects } from '../data/projects';
 
 const slideVariants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? '105%' : '-105%',
-    opacity: 0,
-    scale: 0.96,
+    x: direction > 0 ? '-72%' : '72%',
+    rotateY: direction > 0 ? 22 : -22,
+    scale: 0.9,
+    opacity: 0.45,
+    zIndex: 2,
   }),
   center: {
     x: 0,
-    opacity: 1,
+    rotateY: 0,
     scale: 1,
+    opacity: 1,
+    zIndex: 3,
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? '-105%' : '105%',
-    opacity: 0,
-    scale: 0.96,
+    x: direction > 0 ? '18%' : '-18%',
+    rotateY: direction > 0 ? -12 : 12,
+    scale: 0.94,
+    opacity: 0.32,
+    zIndex: 1,
   }),
 };
 
@@ -47,7 +53,7 @@ export function Projects() {
     <section id="project" className="relative overflow-hidden bg-[#101010] py-24 md:py-32">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-20">
         <SectionHeading
           title="Projects"
           subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
@@ -66,13 +72,13 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex - 1)}
             aria-label="Proyek sebelumnya"
-            className="absolute left-0 top-1/2 z-20 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-white/20 bg-[#080808] text-white transition-colors hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="absolute left-0 top-1/2 z-20 hidden h-14 w-14 -translate-x-[calc(100%+1.5rem)] -translate-y-1/2 items-center justify-center border border-white/20 bg-[#080808] text-white transition-colors hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
           >
             <ChevronLeft size={22} />
           </button>
 
-          <div className="relative min-h-[650px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[570px] lg:min-h-[430px]">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
+          <div className="relative min-h-[670px] overflow-hidden border border-white/10 bg-[#080808] [perspective:1800px] sm:min-h-[580px] lg:min-h-[470px]">
+            <AnimatePresence initial={false} custom={direction}>
               <motion.article
                 key={project.id}
                 custom={direction}
@@ -80,7 +86,8 @@ export function Projects() {
                 initial={reduceMotion ? { opacity: 0 } : 'enter'}
                 animate="center"
                 exit={reduceMotion ? { opacity: 0 } : 'exit'}
-                transition={{ x: { type: 'spring', stiffness: 230, damping: 28 }, opacity: { duration: 0.22 }, scale: { duration: 0.35 } }}
+                transition={{ x: { type: 'spring', stiffness: 175, damping: 24 }, rotateY: { type: 'spring', stiffness: 150, damping: 22 }, opacity: { duration: 0.35 }, scale: { duration: 0.45 } }}
+                style={{ transformStyle: 'preserve-3d', transformOrigin: direction > 0 ? 'left center' : 'right center' }}
                 drag={reduceMotion ? false : 'x'}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.12}
@@ -118,7 +125,7 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex + 1)}
             aria-label="Proyek berikutnya"
-            className="absolute right-0 top-1/2 z-20 hidden h-12 w-12 translate-x-1/2 -translate-y-1/2 items-center justify-center border border-white/20 bg-[#080808] text-white transition-colors hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="absolute right-0 top-1/2 z-20 hidden h-14 w-14 translate-x-[calc(100%+1.5rem)] -translate-y-1/2 items-center justify-center border border-white/20 bg-[#080808] text-white transition-colors hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
           >
             <ChevronRight size={22} />
           </button>
