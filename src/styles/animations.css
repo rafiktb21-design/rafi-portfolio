@@ -32,24 +32,6 @@
   animation: nameGradientSweep 6s ease-in-out infinite;
 }
 
-/* Dimensional name treatment: keeps the existing gradient, then gives it a subtle red depth. */
-@keyframes nameDepthFloat {
-  0%, 100% {
-    transform: perspective(900px) rotateX(0deg) rotateY(-2deg) translateY(0);
-    text-shadow: 3px 4px 0 #240607, 7px 9px 0 rgba(112, 9, 17, 0.8), 14px 18px 28px rgba(0, 0, 0, 0.75);
-  }
-  50% {
-    transform: perspective(900px) rotateX(2deg) rotateY(2deg) translateY(-5px);
-    text-shadow: 3px 4px 0 #240607, 8px 10px 0 rgba(150, 12, 23, 0.85), 18px 22px 34px rgba(0, 0, 0, 0.8);
-  }
-}
-
-.animate-name-3d {
-  transform-style: preserve-3d;
-  will-change: transform, text-shadow;
-  animation: nameDepthFloat 5.5s ease-in-out infinite;
-}
-
 /* Glow Pulse Animation */
 @keyframes glowPulse {
   0%, 100% {
@@ -232,7 +214,6 @@
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-name-gradient,
-  .animate-name-3d,
   .animate-glow-pulse,
   .animate-fade-in-up,
   .particle,

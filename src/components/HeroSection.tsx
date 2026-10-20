@@ -75,7 +75,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -100, scale: 0.8 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-[25vw] md:text-[18vw] lg:text-[14vw] font-black leading-[0.8] tracking-tight animate-name-gradient animate-name-3d"
+            className="text-[25vw] md:text-[18vw] lg:text-[14vw] font-black leading-[0.8] tracking-tight animate-name-gradient"
             style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
           >
             RAFI
@@ -86,7 +86,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -100, scale: 0.8 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-[22vw] md:text-[15vw] lg:text-[11vw] font-black leading-[0.85] tracking-[0.02em] animate-name-gradient animate-name-3d"
+            className="text-[22vw] md:text-[15vw] lg:text-[11vw] font-black leading-[0.85] tracking-[0.02em] animate-name-gradient"
             style={{ 
               fontFamily: 'Inter, system-ui, sans-serif',
               animationDelay: '0.3s',
