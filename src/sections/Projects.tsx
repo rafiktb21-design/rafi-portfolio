@@ -63,7 +63,7 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex - 1)}
             aria-label="Proyek sebelumnya"
-            className="group absolute left-4 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute -left-6 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex
           >
             <ChevronLeft size={26} className="transition-transform duration-300 group-hover:-translate-x-1" />
           </button>
@@ -115,7 +115,7 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex + 1)}
             aria-label="Proyek berikutnya"
-            className="group absolute right-4 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute -right-6 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex
           >
             <ChevronRight size={26} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
