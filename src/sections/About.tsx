@@ -169,16 +169,16 @@ export function About() {
           initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: -50, filter: "blur(10px)" }}
-          viewport={{ once: false, margin: "-20%" }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: false, amount: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-6 md:mt-8"
         >
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.7 }}
+            viewport={{ once: false, amount: 0 }}
+            transition={{ delay: 0.4 }}
             className="text-sm font-semibold text-[#F7F7F7] tracking-wide uppercase mb-4 text-center"
           >
             Tech Stack
@@ -190,8 +190,8 @@ export function About() {
                 initial={{ opacity: 0, scale: 0, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0, y: -30 }}
-                viewport={{ once: false, margin: "-20%" }}
-                transition={{ duration: 0.4, delay: 0.8 + index * 0.05 }}
+                viewport={{ once: false, amount: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
                 className="group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-[#101010] border border-[#240607] rounded-lg hover:border-[#F01E2C]/50 transition-all duration-300 hover:scale-110"
                 title={tech.name}
               >
