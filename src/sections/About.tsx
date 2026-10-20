@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import profileGif from '../assets/ChatGPT GIF Oct 20, 2026, 06_43_52 PM.gif';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaNodeJs, FaPython, FaGraduationCap, FaMapMarkerAlt, FaBullseye, FaHeart } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiDart, SiFirebase, SiFlutter } from 'react-icons/si';
 
@@ -49,18 +50,6 @@ export function About() {
       id="about"
       className="relative min-h-screen flex items-center bg-[#080808] overflow-hidden"
     >
-      {/* Background accent */}
-      <div className="absolute inset-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.5 }}
-          exit={{ opacity: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.8 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[80%] bg-[radial-gradient(ellipse_at_center,_#240607/40_0%,_transparent_70%)]"
-        />
-      </div>
-
       <div className="relative w-full max-w-[95vw] mx-auto px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8">
         
         {/* 3 Column Layout */}
@@ -130,18 +119,12 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative flex items-center justify-center"
           >
-            {/* Glow behind photo */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[180%] h-[180%] bg-[radial-gradient(ellipse_at_center,_#F01E2C/40_0%,_#240607/60_40%,_transparent_70%)] blur-3xl" />
-            </div>
-            
-            {/* Photo container */}
-            <div className="relative flex items-center justify-center h-full">
-              {/* Photo */}
+            {/* GIF profil */}
+            <div className="relative flex items-center justify-center h-full w-full">
               <img 
-                src="/images/rafi-profile.png" 
-                alt="Rafi Ramadhani"
-                className="relative w-full h-auto max-h-[50vh] object-contain drop-shadow-[0_0_80px_rgba(240,30,44,0.7)]"
+                src={profileGif}
+                alt="Animasi profil Rafi Ramadhani" 
+                className="w-full max-w-[620px] h-auto max-h-[68vh] object-contain"
               />
             </div>
           </motion.div>
