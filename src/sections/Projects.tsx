@@ -44,7 +44,13 @@ export function Projects() {
     <section id="project" className="relative flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-[#101010] py-12 md:py-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
 
-      <div className="relative mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.65, ease: 'easeOut' }}
+        className="relative mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8"
+      >
         <SectionHeading
           title="Projects"
           subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
@@ -126,7 +132,7 @@ export function Projects() {
           {projects.map((item, index) => <button key={item.id} type="button" onClick={() => goTo(index)} aria-label={`Lihat ${item.title}`} className={`h-1.5 transition-all ${index === activeIndex ? 'w-10 bg-[#F01E2C]' : 'w-4 bg-white/25 hover:bg-white/60'}`} />)}
           <button type="button" onClick={() => goTo(activeIndex + 1)} aria-label="Proyek berikutnya" className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F01E2C] text-white shadow-[0_0_0_4px_rgba(240,30,44,0.12)] md:hidden"><ChevronRight size={21} /></button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
