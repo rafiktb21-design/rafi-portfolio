@@ -53,7 +53,7 @@ export function Projects() {
     <section id="project" className="relative overflow-hidden bg-[#101010] py-24 md:py-32">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-20">
+      <div className="relative mx-auto max-w-[88rem] px-4 sm:px-12 lg:px-28">
         <SectionHeading
           title="Projects"
           subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
@@ -72,12 +72,12 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex - 1)}
             aria-label="Proyek sebelumnya"
-            className="absolute left-0 top-1/2 z-20 hidden h-14 w-14 -translate-x-[calc(100%+1.5rem)] -translate-y-1/2 items-center justify-center border border-white/20 bg-[#080808] text-white transition-colors hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute left-0 top-1/2 z-20 hidden h-16 w-16 -translate-x-[calc(100%+2rem)] -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
           >
-            <ChevronLeft size={22} />
+            <ChevronLeft size={26} className="transition-transform duration-300 group-hover:-translate-x-1" />
           </button>
 
-          <div className="relative min-h-[670px] overflow-hidden border border-white/10 bg-[#080808] [perspective:1800px] sm:min-h-[580px] lg:min-h-[470px]">
+          <div className="relative min-h-[700px] overflow-hidden border border-white/10 bg-[#080808] [perspective:1800px] sm:min-h-[610px] lg:min-h-[510px]">
             <AnimatePresence initial={false} custom={direction}>
               <motion.article
                 key={project.id}
@@ -125,16 +125,16 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex + 1)}
             aria-label="Proyek berikutnya"
-            className="absolute right-0 top-1/2 z-20 hidden h-14 w-14 translate-x-[calc(100%+1.5rem)] -translate-y-1/2 items-center justify-center border border-white/20 bg-[#080808] text-white transition-colors hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute right-0 top-1/2 z-20 hidden h-16 w-16 translate-x-[calc(100%+2rem)] -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
           >
-            <ChevronRight size={22} />
+            <ChevronRight size={26} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
 
         <div className="mt-6 flex items-center justify-center gap-3">
-          <button type="button" onClick={() => goTo(activeIndex - 1)} aria-label="Proyek sebelumnya" className="flex h-10 w-10 items-center justify-center border border-white/20 text-white md:hidden"><ChevronLeft size={20} /></button>
+          <button type="button" onClick={() => goTo(activeIndex - 1)} aria-label="Proyek sebelumnya" className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F01E2C] text-white shadow-[0_0_0_4px_rgba(240,30,44,0.12)] md:hidden"><ChevronLeft size={21} /></button>
           {projects.map((item, index) => <button key={item.id} type="button" onClick={() => goTo(index)} aria-label={`Lihat ${item.title}`} className={`h-1.5 transition-all ${index === activeIndex ? 'w-10 bg-[#F01E2C]' : 'w-4 bg-white/25 hover:bg-white/60'}`} />)}
-          <button type="button" onClick={() => goTo(activeIndex + 1)} aria-label="Proyek berikutnya" className="flex h-10 w-10 items-center justify-center border border-white/20 text-white md:hidden"><ChevronRight size={20} /></button>
+          <button type="button" onClick={() => goTo(activeIndex + 1)} aria-label="Proyek berikutnya" className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F01E2C] text-white shadow-[0_0_0_4px_rgba(240,30,44,0.12)] md:hidden"><ChevronRight size={21} /></button>
         </div>
       </div>
     </section>
