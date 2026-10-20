@@ -41,10 +41,10 @@ export function Projects() {
   };
 
   return (
-    <section id="project" className="relative overflow-hidden bg-[#101010] py-24 md:py-32">
+    <section id="project" className="relative overflow-hidden bg-[#101010] py-20 md:py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-[88rem] px-4 sm:px-12 lg:px-28">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
         <SectionHeading
           title="Projects"
           subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
@@ -63,12 +63,12 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex - 1)}
             aria-label="Proyek sebelumnya"
-            className="group absolute left-0 top-1/2 z-20 hidden h-16 w-16 -translate-x-[calc(100%+2rem)] -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute left-4 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
           >
             <ChevronLeft size={26} className="transition-transform duration-300 group-hover:-translate-x-1" />
           </button>
 
-          <div className="relative min-h-[700px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[610px] lg:min-h-[510px]">
+          <div className="relative min-h-[620px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[535px] lg:min-h-[440px] xl:min-h-[460px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.article
                 key={project.id}
@@ -115,7 +115,7 @@ export function Projects() {
             type="button"
             onClick={() => goTo(activeIndex + 1)}
             aria-label="Proyek berikutnya"
-            className="group absolute right-0 top-1/2 z-20 hidden h-16 w-16 translate-x-[calc(100%+2rem)] -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute right-4 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
           >
             <ChevronRight size={26} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
