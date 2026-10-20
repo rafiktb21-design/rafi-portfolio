@@ -1,167 +1,97 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Download } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight, Download, ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import type { Project } from '../data/projects';
 
 interface ProjectCardProps {
   project: Project;
   index: number;
+  featured?: boolean;
 }
 
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 60,
-    scale: 0.9,
-    filter: "blur(10px)"
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut' as const,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -60,
-    scale: 0.9,
-    filter: "blur(10px)",
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
+function actionLabel(project: Project) {
+  if (project.liveUrl?.includes('drive.google.com')) return 'Unduh aplikasi';
+  if (project.liveUrl?.includes('roblox.com')) return 'Lihat pengalaman';
+  return 'Buka proyek';
+}
 
-export function ProjectCard({ project }: ProjectCardProps) {
+function ActionIcon({ project }: { project: Project }) {
+  if (project.liveUrl?.includes('drive.google.com')) return <Download size={16} />;
+  return project.liveUrl?.includes('roblox.com') ? <ExternalLink size={16} /> : <ArrowUpRight size={17} />;
+}
+
+export function ProjectCard({ project, index, featured = false }: ProjectCardProps) {
+  const reduceMotion = useReducedMotion();
+  const status = project.status === 'completed' ? 'Selesai' : project.status === 'in-progress' ? 'Sedang dikembangkan' : 'Direncanakan';
+
   return (
     <motion.article
-      variants={cardVariants}
-      whileHover={{ 
-        y: -10,
-        transition: { duration: 0.3 }
-      }}
-      className="group relative bg-[#080808] border border-[#240607] rounded-lg overflow-hidden hover:border-[#F01E2C]/70 transition-all duration-500"
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.45, delay: index * 0.08 }}
+      className={`group relative border border-white/10 bg-[#0b0b0b] ${featured ? 'grid overflow-hidden lg:grid-cols-[1.25fr_1fr]' : 'grid overflow-hidden sm:grid-cols-[190px_1fr]'}`}
     >
-      {/* Glow effect on hover */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="absolute inset-0 bg-gradient-to-r from-[#F01E2C]/0 via-[#F01E2C]/5 to-[#F01E2C]/0 pointer-events-none"
-      />
-
-      {/* Thumbnail */}
-      <div className="relative aspect-video overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent z-10" />
-        <motion.img 
-          src={project.thumbnail} 
+      <div className={`relative overflow-hidden bg-[#161010] ${featured ? 'min-h-[260px] lg:min-h-[420px]' : 'min-h-[190px]'}`}>
+        <img
+          src={project.thumbnail}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
           }}
         />
-        {/* Overlay on hover */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 0.3 }}
-          className="absolute inset-0 bg-[#F01E2C] z-10"
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-transparent" />
+        <span className="absolute left-4 top-4 border border-white/20 bg-[#080808]/80 px-3 py-1.5 text-xs font-medium text-[#F7F7F7] backdrop-blur-sm">
+          {status}
+        </span>
       </div>
 
-      {/* Content */}
-      <div className="relative p-6">
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="text-xl font-bold text-[#F7F7F7] group-hover:text-[#F01E2C] transition-colors duration-300">
-            {project.title}
-          </h3>
-          <motion.span 
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.1 }}
-            className={`text-xs px-2 py-1 rounded-full ${
-              project.status === 'completed' 
-                ? 'bg-green-500/20 text-green-400' 
-                : project.status === 'in-progress'
-                ? 'bg-yellow-500/20 text-yellow-400'
-                : 'bg-[#A4A4A4]/20 text-[#A4A4A4]'
-            }`}
-          >
-            {project.status === 'completed' ? 'Selesai' : project.status === 'in-progress' ? 'Dalam Proses' : 'Direncanakan'}
-          </motion.span>
+      <div className={`flex flex-col ${featured ? 'p-7 md:p-9' : 'p-6'}`}>
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <p className="text-sm font-medium text-[#F01E2C]">Proyek {String(index + 1).padStart(2, '0')}</p>
+          {!featured && <span className="text-xs text-[#A4A4A4]">{status}</span>}
         </div>
-
-        <p className="text-[#A4A4A4] text-sm mb-4 line-clamp-2 leading-relaxed">
+        <h3 className={`${featured ? 'text-3xl md:text-4xl' : 'text-xl'} font-bold leading-tight tracking-tight text-[#F7F7F7]`}>
+          {project.title}
+        </h3>
+        <p className={`mt-4 max-w-[58ch] text-sm leading-7 text-[#A4A4A4] ${featured ? 'md:text-base' : ''}`}>
           {project.description}
         </p>
 
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.slice(0, 4).map((tech) => (
-            <motion.span
-              key={tech}
-              whileHover={{ scale: 1.05 }}
-              className="text-xs px-3 py-1 bg-[#240607] text-[#A4A4A4] rounded border border-[#240607] hover:border-[#F01E2C]/50 transition-colors"
-            >
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span key={tech} className="border border-white/10 px-2.5 py-1 text-xs text-[#D1D1D1]">
               {tech}
-            </motion.span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="text-xs px-3 py-1 bg-[#240607] text-[#A4A4A4] rounded">
-              +{project.technologies.length - 4}
             </span>
-          )}
+          ))}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-4">
-          {project.githubUrl && project.githubUrl !== '#' ? (
-            <motion.a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ x: 5 }}
-              className="flex items-center gap-2 text-sm text-[#A4A4A4] hover:text-[#F01E2C] transition-colors"
-            >
-              <FaGithub size={16} />
-              GitHub
-            </motion.a>
-          ) : null}
-          {project.liveUrl && project.liveUrl !== '#' ? (
-            <motion.a
+        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-8">
+          {project.liveUrl && project.liveUrl !== '#' && (
+            <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ x: 5 }}
-              className="flex items-center gap-2 text-sm text-[#A4A4A4] hover:text-[#F01E2C] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#F01E2C] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#FF3845] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7F7F7]"
             >
-              {project.liveUrl.includes('drive.google.com') ? (
-                <>
-                  <Download size={16} />
-                  Download
-                </>
-              ) : project.liveUrl.includes('roblox.com') ? (
-                <>
-                  <ExternalLink size={16} />
-                  Coba Sekarang
-                </>
-              ) : (
-                <>
-                  <ExternalLink size={16} />
-                  Live Demo
-                </>
-              )}
-            </motion.a>
-          ) : null}
+              {actionLabel(project)}
+              <ActionIcon project={project} />
+            </a>
+          )}
+          {project.githubUrl && project.githubUrl !== '#' && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-[#D1D1D1] transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7F7F7]"
+            >
+              <FaGithub size={17} />
+              Kode sumber
+            </a>
+          )}
         </div>
       </div>
-
-      {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#F01E2C]/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     </motion.article>
   );
 }
