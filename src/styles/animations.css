@@ -32,6 +32,16 @@
   animation: nameGradientSweep 6s ease-in-out infinite;
 }
 
+/* Static extrusion gives the animated name depth without competing with its gradient sweep. */
+.name-3d {
+  text-shadow:
+    1px 1px 0 #5b0b12,
+    2px 2px 0 #48090e,
+    3px 3px 0 #35070b,
+    4px 4px 0 #240607,
+    12px 16px 22px rgba(0, 0, 0, 0.65);
+}
+
 /* Glow Pulse Animation */
 @keyframes glowPulse {
   0%, 100% {
