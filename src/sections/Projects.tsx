@@ -7,7 +7,7 @@ import { projects } from '../data/projects';
 
 const slideVariants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 36 : -36,
+    x: direction > 0 ? 32 : -32,
     opacity: 0,
   }),
   center: {
@@ -15,19 +15,19 @@ const slideVariants = {
     opacity: 1,
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? -36 : 36,
+    x: direction > 0 ? -32 : 32,
     opacity: 0,
   }),
 };
 
 function actionText(url?: string) {
-  if (url?.includes('drive.google.com')) return 'Unduh aplikasi';
-  if (url?.includes('roblox.com')) return 'Lihat pengalaman';
-  return 'Buka proyek';
+  if (url?.includes('drive.google.com')) return 'Unduh Aplikasi';
+  if (url?.includes('roblox.com')) return 'Lihat Pengalaman';
+  return 'Buka Proyek';
 }
 
 function ActionIcon({ url }: { url?: string }) {
-  return url?.includes('drive.google.com') ? <Download size={16} /> : <ExternalLink size={16} />;
+  return url?.includes('drive.google.com') ? <Download size={14} /> : <ExternalLink size={14} />;
 }
 
 export function Projects() {
@@ -37,44 +37,63 @@ export function Projects() {
 
   const goTo = (nextIndex: number) => {
     const normalizedIndex = (nextIndex + projects.length) % projects.length;
-    setSlide([normalizedIndex, nextIndex > activeIndex || (activeIndex === projects.length - 1 && normalizedIndex === 0) ? 1 : -1]);
+    setSlide([
+      normalizedIndex,
+      nextIndex > activeIndex || (activeIndex === projects.length - 1 && normalizedIndex === 0) ? 1 : -1,
+    ]);
   };
 
   return (
-    <section id="project" className="relative flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-[#101010] py-12 md:py-16">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/70 to-transparent" />
+    <section
+      id="project"
+      className="relative flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden bg-[#080808] py-6 sm:py-8 lg:py-0"
+    >
+      {/* Background radial glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-[radial-gradient(ellipse_at_center,_#F01E2C/10_0%,_transparent_70%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F01E2C]/50 to-transparent" />
+      </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 48 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
-        transition={{ duration: 0.65, ease: 'easeOut' }}
-        className="relative mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8"
+        transition={{ duration: 0.55, ease: 'easeOut' }}
+        className="relative mx-auto w-full max-w-4xl xl:max-w-5xl px-4 sm:px-8 md:px-12 lg:px-14 flex flex-col justify-center"
       >
         <SectionHeading
           title="Projects"
-          subtitle="Pilihan karya digital yang saya rancang, bangun, dan terus kembangkan."
+          subtitle="Pilihan karya digital yang saya rancang, bangun, dan kembangkan."
+          className="mb-3 sm:mb-4 text-center"
         />
 
-        <div className="mb-5 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="h-px w-10 bg-[#F01E2C]" />
-            <p className="text-sm text-[#A4A4A4]">Koleksi proyek</p>
+        {/* Header bar: indicator & counter */}
+        <div className="mb-2.5 flex items-center justify-between px-1">
+          <div className="flex items-center gap-2.5">
+            <span className="h-1 w-5 rounded-full bg-[#F01E2C]" />
+            <p className="text-[11px] sm:text-xs font-semibold tracking-wider text-[#A4A4A4] uppercase">Koleksi Proyek</p>
           </div>
-          <p className="text-sm text-[#A4A4A4]">{String(activeIndex + 1).padStart(2, '0')} <span className="mx-1 text-[#F01E2C]">/</span> {String(projects.length).padStart(2, '0')}</p>
+          <div className="flex items-center gap-1 font-mono text-[11px] sm:text-xs text-[#A4A4A4]">
+            <span className="font-bold text-white">{String(activeIndex + 1).padStart(2, '0')}</span>
+            <span className="text-[#F01E2C]">/</span>
+            <span>{String(projects.length).padStart(2, '0')}</span>
+          </div>
         </div>
 
+        {/* Card showcase wrapper with desktop navigation arrows */}
         <div className="relative">
+          {/* Desktop Prev Button */}
           <button
             type="button"
             onClick={() => goTo(activeIndex - 1)}
             aria-label="Proyek sebelumnya"
-            className="group absolute -left-6 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute -left-5 lg:-left-6 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#141414]/90 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F01E2C] md:flex cursor-pointer"
           >
-            <ChevronLeft size={26} className="transition-transform duration-300 group-hover:-translate-x-1" />
+            <ChevronLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
           </button>
 
-          <div className="relative min-h-[500px] overflow-hidden border border-white/10 bg-[#080808] sm:min-h-[440px] lg:min-h-[min(56vh,500px)]">
+          {/* Project Card Container */}
+          <div className="relative min-h-[480px] sm:min-h-[440px] lg:h-[390px] xl:h-[410px] overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e0e] shadow-[0_15px_40px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-white/20">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.article
                 key={project.id}
@@ -83,54 +102,137 @@ export function Projects() {
                 initial={reduceMotion ? { opacity: 0 } : 'enter'}
                 animate="center"
                 exit={reduceMotion ? { opacity: 0 } : 'exit'}
-                transition={{ x: { duration: 0.32, ease: 'easeOut' }, opacity: { duration: 0.26, ease: 'easeOut' } }}
+                transition={{ x: { duration: 0.28, ease: 'easeOut' }, opacity: { duration: 0.22, ease: 'easeOut' } }}
                 drag={reduceMotion ? false : 'x'}
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.12}
+                dragElastic={0.15}
                 onDragEnd={(_, info) => {
-                  if (info.offset.x < -80) goTo(activeIndex + 1);
-                  if (info.offset.x > 80) goTo(activeIndex - 1);
+                  if (info.offset.x < -60) goTo(activeIndex + 1);
+                  if (info.offset.x > 60) goTo(activeIndex - 1);
                 }}
-                className="absolute inset-0 grid cursor-grab select-none overflow-hidden active:cursor-grabbing lg:grid-cols-[1.16fr_0.84fr]"
+                className="absolute inset-0 grid cursor-grab select-none overflow-hidden active:cursor-grabbing lg:grid-cols-12"
               >
-                <div className="relative min-h-[285px] overflow-hidden lg:min-h-0">
-                  <img src={project.thumbnail} alt={project.title} className="h-full w-full object-cover" draggable={false} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#080808]/25" />
-                  <span className="absolute left-5 top-5 border border-white/25 bg-[#080808]/85 px-3 py-1.5 text-xs font-medium text-[#F7F7F7] backdrop-blur-sm">
-                    {project.status === 'completed' ? 'Selesai' : 'Sedang dikembangkan'}
-                  </span>
+                {/* Image Section */}
+                <div className="group relative h-44 sm:h-48 lg:h-full lg:col-span-7 overflow-hidden bg-[#121212]">
+                  <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    draggable={false}
+                  />
+                  {/* Subtle edge gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#0e0e0e]" />
+
+                  {/* Status Badge */}
+                  <div className="absolute left-3.5 top-3.5 flex items-center gap-2 rounded-full border border-white/15 bg-black/75 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full ${
+                        project.status === 'completed' ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'
+                      }`}
+                    />
+                    <span>{project.status === 'completed' ? 'Selesai' : 'Sedang dikembangkan'}</span>
+                  </div>
                 </div>
 
-                <div className="flex flex-col p-7 md:p-9">
-                  <p className="text-sm font-medium text-[#F01E2C]">Proyek {String(activeIndex + 1).padStart(2, '0')}</p>
-                  <h3 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-[#F7F7F7] md:text-4xl">{project.title}</h3>
-                  <p className="mt-5 max-w-[52ch] text-sm leading-7 text-[#A4A4A4] md:text-base">{project.description}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => <span key={tech} className="border border-white/10 px-2.5 py-1 text-xs text-[#D1D1D1]">{tech}</span>)}
+                {/* Content Section */}
+                <div className="flex flex-col justify-between p-4 sm:p-5 lg:p-6 lg:col-span-5 bg-[#0e0e0e]">
+                  <div>
+                    <span className="font-mono text-[11px] font-semibold tracking-wider text-[#F01E2C] uppercase">
+                      PROYEK {String(activeIndex + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-1 text-lg sm:text-xl lg:text-2xl font-bold leading-tight tracking-tight text-[#F7F7F7]">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#A4A4A4] line-clamp-3 lg:line-clamp-4">
+                      {project.description}
+                    </p>
                   </div>
-                  <div className="mt-auto flex flex-wrap items-center gap-5 pt-8">
-                    {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#F01E2C] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#FF3845] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{actionText(project.liveUrl)} <ActionIcon url={project.liveUrl} /></a>}
-                    {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#D1D1D1] transition-colors hover:text-white"><FaGithub size={17} /> Kode sumber</a>}
+
+                  {/* Tech stack & Action buttons */}
+                  <div className="mt-3 pt-2.5 border-t border-white/5 space-y-3">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] sm:text-[11px] text-[#D1D1D1]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-[#F01E2C] px-3.5 py-1.5 text-xs font-semibold text-white shadow-md shadow-[#F01E2C]/20 transition-all hover:bg-[#FF3845] hover:shadow-[#F01E2C]/40 active:scale-95 cursor-pointer"
+                        >
+                          {actionText(project.liveUrl)} <ActionIcon url={project.liveUrl} />
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-[#D1D1D1] transition-all hover:bg-white/10 hover:text-white active:scale-95 cursor-pointer"
+                        >
+                          <FaGithub size={14} /> Kode Sumber
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.article>
             </AnimatePresence>
           </div>
 
+          {/* Desktop Next Button */}
           <button
             type="button"
             onClick={() => goTo(activeIndex + 1)}
             aria-label="Proyek berikutnya"
-            className="group absolute -right-6 top-1/2 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#F01E2C] bg-[#F01E2C] text-white shadow-[0_0_0_6px_rgba(240,30,44,0.12)] transition-all duration-300 hover:scale-110 hover:bg-[#FF3845] hover:shadow-[0_0_0_10px_rgba(240,30,44,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex"
+            className="group absolute -right-5 lg:-right-6 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#141414]/90 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[#F01E2C] hover:bg-[#F01E2C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F01E2C] md:flex cursor-pointer"
           >
-            <ChevronRight size={26} className="transition-transform duration-300 group-hover:translate-x-1" />
+            <ChevronRight size={20} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </button>
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <button type="button" onClick={() => goTo(activeIndex - 1)} aria-label="Proyek sebelumnya" className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F01E2C] text-white shadow-[0_0_0_4px_rgba(240,30,44,0.12)] md:hidden"><ChevronLeft size={21} /></button>
-          {projects.map((item, index) => <button key={item.id} type="button" onClick={() => goTo(index)} aria-label={`Lihat ${item.title}`} className={`h-1.5 transition-all ${index === activeIndex ? 'w-10 bg-[#F01E2C]' : 'w-4 bg-white/25 hover:bg-white/60'}`} />)}
-          <button type="button" onClick={() => goTo(activeIndex + 1)} aria-label="Proyek berikutnya" className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F01E2C] text-white shadow-[0_0_0_4px_rgba(240,30,44,0.12)] md:hidden"><ChevronRight size={21} /></button>
+        {/* Bottom Pagination & Mobile Controls */}
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => goTo(activeIndex - 1)}
+            aria-label="Proyek sebelumnya"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-[#141414] text-white hover:bg-[#F01E2C] transition-colors md:hidden cursor-pointer"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {projects.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goTo(index)}
+                aria-label={`Lihat ${item.title}`}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  index === activeIndex ? 'w-7 bg-[#F01E2C]' : 'w-2 bg-white/20 hover:bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goTo(activeIndex + 1)}
+            aria-label="Proyek berikutnya"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-[#141414] text-white hover:bg-[#F01E2C] transition-colors md:hidden cursor-pointer"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </motion.div>
     </section>
